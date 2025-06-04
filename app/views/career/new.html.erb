@@ -1,0 +1,101 @@
+<%= form_with url: career_path, method: :post, local: true, html: { class: "career-form" } do |f| %>
+  <%= hidden_field_tag :project_id, @project.id %>
+
+  <style>
+    /* — Your form wrapper styles — */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0; padding: 0;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 0px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+    .career-form { display: flex; flex-direction: column; }
+    .form-title { text-align: center; color: #333; font-size: 24px; margin-bottom: 10px; }
+    .form-subtitle { text-align: center; color: #007BFF; font-size: 15px; margin-bottom: 25px; }
+    .form-field { margin-bottom: 20px; display: flex; flex-direction: column; }
+    .form-label { font-weight: bold; margin-bottom: 8px; color: #333; }
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="file"]:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    /* — New, high‑specificity submit button styles — */
+    form.career-form .form-actions .form-submit-btn {
+      width: 100% !important;
+      padding: 12px 20px !important;
+      background-color: #72A0C1 !important;
+      color:            #fff     !important;
+      border:           none     !important;
+      border-radius:    4px      !important;
+      font-size:        16px     !important;
+      text-align:       center   !important;
+      cursor:           pointer  !important;
+      transition: background-color 0.3s ease !important;
+      height:           40%;
+    }
+    form.career-form .form-actions .form-submit-btn:hover {
+      background-color: #5a8aa5 !important;
+    }
+    form.career-form .form-actions .form-submit-btn:disabled {
+      background-color: #ccc !important;
+      color:            #666 !important;
+      cursor:           not-allowed !important;
+      opacity:          0.8 !important;
+    }
+
+    .form-actions { margin-top: 20px; }
+  </style>
+
+  <div class="form-container">
+    <h1 class="form-title">Employee Referral Program</h1>
+    <p class="form-subtitle">Kindly provide the details of the candidate you wish to refer for the opportunity.</p>
+
+    <div class="form-field">
+      <%= f.label :name, "Name", class: "form-label" %>
+      <%= f.text_field :name, class: "form-input", required: true %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :qualification, "Qualification", class: "form-label" %>
+      <%= f.text_field :qualification, class: "form-input", required: true %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :experience, "Experience (in years)", class: "form-label" %>
+      <%= f.number_field :experience, class: "form-input", step: 0.1, min: 0, required: true %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :position, "Position", class: "form-label" %>
+      <%= f.text_field :position, class: "form-input", required: true %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :resume, "Upload Resume", class: "form-label" %>
+      <%= f.file_field :resume, class: "form-input", required: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Submit",
+            class: "form-submit-btn",
+            disabled: false %>
+    </div>
+  </div>
+<% end %>
